@@ -12,6 +12,13 @@ SHOW TABLES; #Display all the tables in the database you're in
 
 DESCRIBE customers; #Display tab
 
+INSERT INTO customers(cust_name, phone_number) VALUES("ash", "07946621661");
+INSERT INTO customers(cust_name, phone_number) VALUES("ash2", "97946621111");
+
+SELECT * FROM customers;
+
+
+
 
 
 
