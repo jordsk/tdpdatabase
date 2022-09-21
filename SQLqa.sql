@@ -37,7 +37,6 @@ INSERT INTO customers(cu_name, phone_number, email_address, address1, address2, 
 INSERT INTO customers(cu_name, phone_number, email_address, address1, address2, town, post_code, delivery_info, subscribe, mp_email, mp_phone, mp_post) VALUES("barry", "07385678434", "barry454@gmail.co,)","295 close", "whetstone", "london", "en4rlg", "n/a", "0", "0", "0","0");
 INSERT INTO customers(cu_name, phone_number, email_address, address1, address2, town, post_code, delivery_info, subscribe, mp_email, mp_phone, mp_post) VALUES("harvey", "07311234567", "harveynotharry@gmail.co.uk)","135 pop lane", "southgate", "bishop", "cm231ha", "n/a", "0", "0", "0","0");
 
-
 UPDATE customers SET phone_number="07338260974" WHERE c_id=3;
 
 
@@ -52,7 +51,6 @@ availability BOOLEAN DEFAULT (false));
 
 ALTER TABLE items MODIFY price DECIMAL (6,2) NOT NULL;
 
-
 DESCRIBE items;
 SELECT * FROM items;
 INSERT INTO items(item_name, item_decription, allergens, price, calories, availability) VALUES("halloumi","greek cheese", "milk", "499", "480", "1");
@@ -61,3 +59,29 @@ INSERT INTO items(item_name, item_decription, allergens, price, calories, availa
 INSERT INTO items(item_name, item_decription, allergens, price, calories, availability) VALUES("fruit bowl","a great range of summer fruits", "n/a", "2.99", "130", "1");
 INSERT INTO items(item_name, item_decription, allergens, price, calories, availability) VALUES("bread and butter","selection of house bread", "gluten", "1.99", "150", "0");
 
+DELETE FROM items WHERE items_id=4;
+
+CREATE TABLE orders(
+order_id INT UNIQUE NOT NULL AUTO_INCREMENT,
+cust_id INT NOT NULL,
+total_price DECIMAL (6,2),
+PRIMARY KEY(order_id),
+FOREIGN KEY (cust_id) REFERENCES customers(c_id));
+
+DESCRIBE orders;
+SELECT * FROM orders;
+INSERT INTO orders(cust_id, total_price) VALUES ("1", "10.00"), ("2", "899"), ("3", "15.00"), ("5", "5.98"), ("6", "3.98");
+
+CREATE TABLE orders_items(
+oi_id INT UNIQUE NOT NULL AUTO_INCREMENT,
+ord_id INT NOT NULL,
+i_id INT NOT NULL,
+quantity INT,
+PRIMARY KEY (oi_id),
+FOREIGN KEY (ord_id) REFERENCES orders(order_id),
+FOREIGN KEY (i_id) REFERENCES items(items_id));
+
+DESCRIBE orders_items;
+SELECT * FROM orders_items;
+
+INSERT INTO orders_items(ord_id, i_id) VALUES (1, 1), (2, 1), (3, 1), (4, 3), (5, 5);
