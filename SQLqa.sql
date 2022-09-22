@@ -70,7 +70,7 @@ FOREIGN KEY (cust_id) REFERENCES customers(c_id));
 
 DESCRIBE orders;
 SELECT * FROM orders;
-INSERT INTO orders(cust_id, total_price) VALUES ("1", "10.00"), ("2", "899"), ("3", "15.00"), ("5", "5.98"), ("6", "3.98");
+INSERT INTO orders(cust_id, total_price) VALUES ("1", "10.00"), ("2", "899"), ("3", "15.00"), ("4", "5.98"), ("5", "3.98");
 
 CREATE TABLE orders_items(
 oi_id INT UNIQUE NOT NULL AUTO_INCREMENT,
@@ -84,4 +84,6 @@ FOREIGN KEY (i_id) REFERENCES items(items_id));
 DESCRIBE orders_items;
 SELECT * FROM orders_items;
 
-INSERT INTO orders_items(ord_id, i_id) VALUES (1, 1), (2, 1), (3, 1), (4, 3), (5, 5);
+INSERT INTO orders_items(ord_id, i_id, quantity) VALUES(36, 1, 3), (37, 1, 2), (38, 1, 2), (39, 3, 5), (40, 5, 1);
+
+SELECT * FROM items ORDER BY items_id DESC LIMIT 2;
