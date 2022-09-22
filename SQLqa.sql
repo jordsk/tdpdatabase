@@ -87,3 +87,8 @@ SELECT * FROM orders_items;
 INSERT INTO orders_items(ord_id, i_id, quantity) VALUES(36, 1, 3), (37, 1, 2), (38, 1, 2), (39, 3, 5), (40, 5, 1);
 
 SELECT * FROM items ORDER BY items_id DESC LIMIT 2;
+
+SELECT * FROM customers RIGHT OUTER JOIN orders ON customers.c_id=orders.cust_id;
+
+SELECT * FROM customers WHERE c_id=(SELECT c_id FROM orders WHERE order_id=1);
+
